@@ -14,7 +14,7 @@ public class Automat {
         ticket_loop = 0;
 
         // tickets
-        options: System.out.println("welcome to the ticket machine");
+        System.out.println("welcome to the ticket machine");
         System.out.println("we have 3 different options");
         System.out.println("Zone A: 2,50 €");
         System.out.println("Zone B: 3,70 €");
@@ -39,6 +39,15 @@ public class Automat {
                 System.out.println(
                         "You have " + num_of_tickets + " tickets. this will cost you " + (2.50 * num_of_tickets) + "€");
             }
+            if (choosen_ticket.equals("b")) {
+                System.out.println(
+                        "You have " + num_of_tickets + " tickets. this will cost you " + (3.70 * num_of_tickets) + "€");
+            }
+            if (choosen_ticket.equals("c")) {
+                System.out.println(
+                        "You have " + num_of_tickets + " tickets. this will cost you " + (5.20 * num_of_tickets) + "€");
+            }
+
         }
     }
 
