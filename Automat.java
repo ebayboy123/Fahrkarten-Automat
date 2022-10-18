@@ -1,54 +1,60 @@
 import java.util.Scanner;
+import java.util.Date;
 
 public class Automat {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        // scanner
-        Scanner input = new Scanner(System.in);
-        String choosen_ticket;
-        String more_tickets;
-        int ticket_loop;
-        int num_of_tickets;
+        while (true) {
 
-        ticket_loop = 0;
+            // scanner
+            Scanner input = new Scanner(System.in);
+            String choosen_ticket;
+            String more_tickets;
+            int ticket_loop;
+            int num_of_tickets;
 
-        // tickets
-        System.out.println("welcome to the ticket machine");
-        System.out.println("we have 3 different options");
-        System.out.println("Zone A: 2,50 €");
-        System.out.println("Zone B: 3,70 €");
-        System.out.println("Zone C: 5,20 €");
-        System.out.println("which ticket would you like to buy? a | b | c");
-        choosen_ticket = input.nextLine();
+            ticket_loop = 0;
 
-        // number of tickets
-        System.out.println("how many tickets would you like to buy");
-        num_of_tickets = input.nextInt();
+            // tickets
+            System.out.println("welcome to the ticket machine");
+            System.out.println("we have 3 different options");
+            System.out.println("Zone A: 2,50 €");
+            System.out.println("Zone B: 3,70 €");
+            System.out.println("Zone C: 5,20 €");
+            System.out.println("which ticket would you like to buy? a | b | c");
+            choosen_ticket = input.nextLine();
 
-        if (num_of_tickets <= 0) {
-            System.out.println("you have to buy at least 1 ticket");
-        }
+            // number of tickets
+            System.out.println("how many tickets would you like to buy");
+            num_of_tickets = input.nextInt();
 
-        System.out.println("do you want to buy more tickets y/n");
-        more_tickets = input.next();
-
-        if (more_tickets.equals("n")) {
-
-            if (choosen_ticket.equals("a")) {
-                System.out.println(
-                        "You have " + num_of_tickets + " tickets. this will cost you " + (2.50 * num_of_tickets) + "€");
+            if (num_of_tickets <= 0) {
+                System.out.println("you have to buy at least 1 ticket");
             }
-            if (choosen_ticket.equals("b")) {
-                System.out.println(
-                        "You have " + num_of_tickets + " tickets. this will cost you " + (3.70 * num_of_tickets) + "€");
+
+            System.out.println("do you want to buy more tickets y/n");
+            more_tickets = input.next();
+
+            if (more_tickets.equals("n")) {
+
+                if (choosen_ticket.equals("a")) {
+                    System.out.println(
+                            "You have " + num_of_tickets + " tickets. this will cost you " + (2.50 * num_of_tickets) + "€");
+                }
+                if (choosen_ticket.equals("b")) {
+                    System.out.println(
+                            "You have " + num_of_tickets + " tickets. this will cost you " + (3.70 * num_of_tickets) + "€");
+                }
+                if (choosen_ticket.equals("c")) {
+                    System.out.println(
+                            "You have " + num_of_tickets + " tickets. this will cost you " + (5.20 * num_of_tickets) + "€");
+                }
+
             }
-            if (choosen_ticket.equals("c")) {
-                System.out.println(
-                        "You have " + num_of_tickets + " tickets. this will cost you " + (5.20 * num_of_tickets) + "€");
-            }
+            System.out.println("Good Bye");
+            Thread.sleep(4000);
 
         }
     }
-
 }
