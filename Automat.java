@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.text.DecimalFormat;
 import java.lang.Math;
 
@@ -11,40 +8,40 @@ public class Automat {
 
     public static void main(String[] args) throws InterruptedException {
 
-        try {
-            int num_of_tickets;
-            Scanner input = new Scanner(System.in);
-            String choosen_ticket;
-            String traincard;
-            Integer age;
-            Double inserted_coins;
-            Double result = null;
+        int num_of_tickets;
+        Scanner input = new Scanner(System.in);
+        String choosen_ticket;
+        String traincard;
+        Integer age;
+        Double inserted_coins;
+        Double result = null;
 
-            while (true) {
-                Thread.sleep(4000);
-                //choosing options for tickets
-                List<String> avalible_buying_options = new ArrayList<String>();
-                avalible_buying_options.add("a");
-                avalible_buying_options.add("b");
-                avalible_buying_options.add("c");
+        //choosing options for tickets
+        List<String> avalible_buying_options = new ArrayList<String>();
+        avalible_buying_options.add("a");
+        avalible_buying_options.add("b");
+        avalible_buying_options.add("c");
 
-                //coins
-                List<Double> possible_coins = new ArrayList<Double>();
-                possible_coins.add(0.01);
-                possible_coins.add(0.02);
-                possible_coins.add(0.05);
-                possible_coins.add(0.10);
-                possible_coins.add(0.20);
-                possible_coins.add(0.50);
-                possible_coins.add(1.0);
-                possible_coins.add(2.0);
+        //train card
+        List<String> possible_train_card = new ArrayList<String>();
+        possible_train_card.add("y");
+        possible_train_card.add("n");
 
+        //coins
+        List<Double> possible_coins = new ArrayList<Double>();
+        possible_coins.add(0.01);
+        possible_coins.add(0.02);
+        possible_coins.add(0.05);
+        possible_coins.add(0.10);
+        possible_coins.add(0.20);
+        possible_coins.add(0.50);
+        possible_coins.add(1.0);
+        possible_coins.add(2.0);
+
+        while (true) {
+            try {
                 // tickets
-                System.out.println("welcome to the ticket machine");
-                System.out.println("we have 3 different options");
-                System.out.println("Zone A: 2,50 €");
-                System.out.println("Zone B: 3,70 €");
-                System.out.println("Zone C: 5,20 €");
+                System.out.println("welcome to the ticket machine \nwe have 3 different options\nZone A: 2,50 €\nZone B: 3,70 €\nZone C: 5,20 €\n");
                 System.out.println("which ticket would you like to buy? a | b | c");
                 choosen_ticket = input.nextLine().toLowerCase();
 
@@ -58,90 +55,103 @@ public class Automat {
                         System.out.println("do you have a train card y/n");
                         traincard = input.next().toLowerCase();
 
-                        System.out.println("how old are you: ");
-                        age = input.nextInt();
+                        if (possible_train_card.contains(traincard)) {
+                            System.out.println("how old are you: ");
+                            age = input.nextInt();
 
-                        switch (choosen_ticket) {
+                            switch (choosen_ticket) {
 
-                            case "a":
-                                if (traincard.equals("y")) {
-                                    if (age < 18) {
-                                        result = (2.50 * (num_of_tickets - (0.2 * num_of_tickets) * 0.5));
+                                case "a":
+                                    if (traincard.equals("y")) {
+                                        if (age < 18) {
+                                            result = (2.50 * (num_of_tickets - (0.2 * num_of_tickets) * 0.5));
+                                        } else {
+                                            result = (2.50 * (num_of_tickets - (0.2 * num_of_tickets)));
+                                        }
                                     } else {
-                                        result = (2.50 * (num_of_tickets - (0.2 * num_of_tickets)));
+                                        if (age < 18) {
+                                            result = ((2.50 * num_of_tickets) * 0.5);
+                                        } else {
+                                            result = (2.50 * num_of_tickets);
+                                        }
                                     }
-                                } else {
-                                    if (age < 18) {
-                                        result = ((2.50 * num_of_tickets) * 0.5);
-                                    } else {
-                                        result = (2.50 * num_of_tickets);
-                                    }
-                                }
-                                break;
+                                    break;
 
-                            case "b":
-                                if (traincard.equals("y")) {
-                                    if (age < 18) {
-                                        result = (3.70 * (num_of_tickets - (0.2 * num_of_tickets) * 0.5));
+                                case "b":
+                                    if (traincard.equals("y")) {
+                                        if (age < 18) {
+                                            result = (3.70 * (num_of_tickets - (0.2 * num_of_tickets) * 0.5));
+                                        } else {
+                                            result = (3.70 * (num_of_tickets - (0.2 * num_of_tickets)));
+                                        }
                                     } else {
-                                        result = (3.70 * (num_of_tickets - (0.2 * num_of_tickets)));
+                                        if (age < 18) {
+                                            result = ((3.70 * num_of_tickets) * 0.5);
+                                        } else {
+                                            result = (3.70 * num_of_tickets);
+                                        }
                                     }
-                                } else {
-                                    if (age < 18) {
-                                        result = ((3.70 * num_of_tickets) * 0.5);
-                                    } else {
-                                        result = (3.70 * num_of_tickets);
-                                    }
-                                }
-                                break;
+                                    break;
 
-                            case "c":
-                                if (traincard.equals("y")) {
+                                case "c":
+                                    if (traincard.equals("y")) {
 
-                                    if (age < 18) {
-                                        result = (5.20 * (num_of_tickets - (0.2 * num_of_tickets) * 0.5));
+                                        if (age < 18) {
+                                            result = (5.20 * (num_of_tickets - (0.2 * num_of_tickets) * 0.5));
+                                        } else {
+                                            result = (5.20 * (num_of_tickets - (0.2 * num_of_tickets)));
+                                        }
                                     } else {
-                                        result = (5.20 * (num_of_tickets - (0.2 * num_of_tickets)));
-                                    }
-                                } else {
 
-                                    if (age < 18) {
-                                        result = ((5.20 * num_of_tickets) * 0.5);
-                                    } else {
-                                        result = (5.20 * num_of_tickets);
+                                        if (age < 18) {
+                                            result = ((5.20 * num_of_tickets) * 0.5);
+                                        } else {
+                                            result = (5.20 * num_of_tickets);
+                                        }
                                     }
-                                }
-                                break;
+                                    break;
+                            }
+                            System.out.println("you have to pay " + (df.format(result)) + "€");
+                        } else {
+                            System.out.println("you have to buy at least 1 ticket");
                         }
-                        System.out.println("you have to pay " + (df.format(result)) + "€");
-                    } else {
-                        System.out.println("you have to buy at least 1 ticket");
-                    }
-                }
-                Double Payed_money;
-                Payed_money = 0.0;
-                while (Payed_money < result) {
-                    System.out.print("please insert coins (0,01, 0,02, 0,05, 0,10, 0,20, 0,50, 1,0, 2,0): ");
-                    inserted_coins = input.nextDouble();
 
-                    if (possible_coins.contains(inserted_coins)) {
-                        Payed_money = (inserted_coins += Payed_money);
-                        System.out.println("inserted " + df.format(inserted_coins) + "€");
-                        System.out.println("left to pay " + (df.format(result - Payed_money)) + "€");
-                    } else {
-                        System.out.print("you cant use those coins \n");
+                        Double Payed_money;
+                        Payed_money = 0.0;
+                        System.out.println((Payed_money) + (result));
+                        while (Payed_money < result) {
+                            System.out.print("please insert coins (0,01, 0,02, 0,05, 0,10, 0,20, 0,50, 1,0, 2,0): ");
+                            inserted_coins = input.nextDouble();
+
+                            if (possible_coins.contains(inserted_coins)) {
+                                Payed_money = (inserted_coins += Payed_money);
+                                System.out.println("inserted " + df.format(inserted_coins) + "€");
+                                System.out.println("left to pay " + (df.format(result - Payed_money)) + "€");
+                            } else {
+                                System.out.print("you cant use those coins \n");
+                            }
+                        }
+
+                        Random random = new Random();
+                        if ((Payed_money-result) != 0.0) {
+                            System.out.println("you have payed too much, \nthere for you will get a voucher for your next purchase! \nVoucher details\nVoucher Value: " + (df.format(Payed_money - result)) + "€ \nVoucher code: " + (random.nextInt(500)));
+                        }
+
+                        Payed_money = 0.0;
+                        result = 0.0;
+
                     }
+                        }
+
+
+
+                else {
+                    System.out.println("i think you have entered a wrong number :( please try again");
                 }
-                if (result != 0.0) {
-                    Random random = new Random();
-                    System.out.println("you have payed too much, \nthere for you will get a voucher for your next purchase! \nVoucher details\nVoucher Value: " + (df.format(Payed_money - result)) + "€ \nVoucher code: " + (random.nextInt(500)));
-                    System.out.println("Good Bye");
-                    Payed_money = 0.0;
-                    result = 0.0;
-                }
+
+            } catch (Exception e) {
+                System.out.println("something went wrong... \nplease retry again");
             }
-        } catch (Exception e) {
-            System.out.println("something went wrong... \nplease retry again");
         }
     }
 }
