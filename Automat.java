@@ -3,8 +3,12 @@ import java.rmi.server.ExportException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class Automat {
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     public static void main(String[] args) throws InterruptedException {
 
         try {
@@ -18,6 +22,7 @@ public class Automat {
             Double result = null;
 
             while (true) {
+                Thread.sleep(4000);
                 //choosing options for tickets
                 List<String> avalible_buying_options = new ArrayList<String>();
                 avalible_buying_options.add("a");
@@ -43,7 +48,7 @@ public class Automat {
                 System.out.println("Zone B: 3,70 €");
                 System.out.println("Zone C: 5,20 €");
                 System.out.println("which ticket would you like to buy? a | b | c");
-                choosen_ticket = input.nextLine();
+                choosen_ticket = input.nextLine().toLowerCase();
 
                 if (avalible_buying_options.contains(choosen_ticket)) {
 
@@ -53,7 +58,7 @@ public class Automat {
 
                     if (num_of_tickets > 0) {
                         System.out.println("do you have a train card y/n");
-                        traincard = input.next();
+                        traincard = input.next().toLowerCase();
 
                         System.out.println("how old are you: ");
                         age = input.nextInt();
@@ -133,11 +138,13 @@ public class Automat {
                         System.out.print("you cant use those coins \n");
                     }
                 }
-                System.out.println("you have payed too much, \nthere for you will get a voucher for you next purchase: ");
-                System.out.println("Good Bye");
-                Payed_money = 0.0;
-                result = 0.0;
-                Thread.sleep(4000);
+                if (result != 0) {
+                    System.out.println("you have payed too much, \nthere for you will get a voucher for you next purchase: ");
+                    System.out.println("Good Bye");
+                    Payed_money = 0.0;
+                    result = 0.0;
+                }
+
             }
         } catch (Exception e) {
             System.out.println("something went wrong... \nplease retry again");
