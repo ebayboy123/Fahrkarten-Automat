@@ -1,10 +1,9 @@
-import java.lang.reflect.Array;
-import java.rmi.server.ExportException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.lang.Math;
 
 public class Automat {
 
@@ -79,7 +78,6 @@ public class Automat {
                                         result = (2.50 * num_of_tickets);
                                     }
                                 }
-                                System.out.println("you have to pay " + result + " €");
                                 break;
 
                             case "b":
@@ -96,7 +94,6 @@ public class Automat {
                                         result = (3.70 * num_of_tickets);
                                     }
                                 }
-                                System.out.println("you have to pay " + result + " €");
                                 break;
 
                             case "c":
@@ -115,19 +112,17 @@ public class Automat {
                                         result = (5.20 * num_of_tickets);
                                     }
                                 }
-                                System.out.println("you have to pay " + result + " €");
                                 break;
                         }
+                        System.out.println("you have to pay " + result + "€");
                     } else {
                         System.out.println("you have to buy at least 1 ticket");
                     }
                 }
-
                 Double Payed_money;
                 Payed_money = 0.0;
-
                 while (Payed_money < result) {
-                    System.out.print("please insert coins (0.01, 0.02, 0.05, 0.10, 0.20, 0.50, 1.0, 2.0): ");
+                    System.out.print("please insert coins (0,01, 0,02, 0,05, 0,10, 0,20, 0,50, 1,0, 2,0): ");
                     inserted_coins = input.nextDouble();
 
                     if (possible_coins.contains(inserted_coins)) {
@@ -138,13 +133,13 @@ public class Automat {
                         System.out.print("you cant use those coins \n");
                     }
                 }
-                if (result != 0) {
-                    System.out.println("you have payed too much, \nthere for you will get a voucher for you next purchase: ");
+                if (result != 0.0) {
+                    Random random = new Random();
+                    System.out.println("you have payed too much, \nthere for you will get a voucher for your next purchase! \nVoucher details\n Voucher Value: "+(Payed_money-result)+"€ \nVoucher code: "+(random.nextInt(500)));
                     System.out.println("Good Bye");
                     Payed_money = 0.0;
                     result = 0.0;
                 }
-
             }
         } catch (Exception e) {
             System.out.println("something went wrong... \nplease retry again");
