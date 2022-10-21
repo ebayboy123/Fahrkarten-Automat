@@ -8,10 +8,10 @@ import java.lang.Math;
 public class Automat {
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
+
     public static void main(String[] args) throws InterruptedException {
 
         try {
-
             int num_of_tickets;
             Scanner input = new Scanner(System.in);
             String choosen_ticket;
@@ -38,7 +38,6 @@ public class Automat {
                 possible_coins.add(0.50);
                 possible_coins.add(1.0);
                 possible_coins.add(2.0);
-
 
                 // tickets
                 System.out.println("welcome to the ticket machine");
@@ -114,7 +113,7 @@ public class Automat {
                                 }
                                 break;
                         }
-                        System.out.println("you have to pay " + result + "€");
+                        System.out.println("you have to pay " + (df.format(result)) + "€");
                     } else {
                         System.out.println("you have to buy at least 1 ticket");
                     }
@@ -127,15 +126,15 @@ public class Automat {
 
                     if (possible_coins.contains(inserted_coins)) {
                         Payed_money = (inserted_coins += Payed_money);
-                        System.out.println("inserted " + inserted_coins + "€");
-                        System.out.println("left to pay " + (result - Payed_money) + "€");
+                        System.out.println("inserted " + df.format(inserted_coins) + "€");
+                        System.out.println("left to pay " + (df.format(result - Payed_money)) + "€");
                     } else {
                         System.out.print("you cant use those coins \n");
                     }
                 }
                 if (result != 0.0) {
                     Random random = new Random();
-                    System.out.println("you have payed too much, \nthere for you will get a voucher for your next purchase! \nVoucher details\n Voucher Value: "+(Payed_money-result)+"€ \nVoucher code: "+(random.nextInt(500)));
+                    System.out.println("you have payed too much, \nthere for you will get a voucher for your next purchase! \nVoucher details\nVoucher Value: " + (df.format(Payed_money - result)) + "€ \nVoucher code: " + (random.nextInt(500)));
                     System.out.println("Good Bye");
                     Payed_money = 0.0;
                     result = 0.0;
