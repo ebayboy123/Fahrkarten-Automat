@@ -5,29 +5,29 @@ public class Automat {
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         int num_of_tickets;
         String choosen_ticket;
         String traincard;
-        Integer age;
+        int age;
         Double inserted_coins;
         Double result = null;
         Scanner input = new Scanner(System.in);
 
         //choosing options for tickets
-        List<String> avalible_buying_options = new ArrayList<String>();
+        List<String> avalible_buying_options = new ArrayList<>();
         avalible_buying_options.add("a");
         avalible_buying_options.add("b");
         avalible_buying_options.add("c");
 
         //train card
-        List<String> possible_train_card = new ArrayList<String>();
+        List<String> possible_train_card = new ArrayList<>();
         possible_train_card.add("y");
         possible_train_card.add("n");
 
         //coins
-        List<Double> possible_coins = new ArrayList<Double>();
+        List<Double> possible_coins = new ArrayList<>();
         possible_coins.add(0.01);
         possible_coins.add(0.02);
         possible_coins.add(0.05);
@@ -115,7 +115,7 @@ public class Automat {
                             System.out.println("you have to buy at least 1 ticket");
                         }
 
-                        Double Payed_money;
+                        double Payed_money;
                         Payed_money = 0.0;
                         System.out.println((Payed_money) + (result));
                         while (Payed_money < result) {
@@ -132,16 +132,14 @@ public class Automat {
                         }
 
                         Random random = new Random();
-                        if ((Payed_money-result) != 0.0) {
+                        if ((Payed_money - result) != 0.0) {
                             System.out.println("you have payed too much, \nthere for you will get a voucher for your next purchase! \nVoucher details:\n    Voucher Value: " + (df.format(Payed_money - result)) + "€ \n    Voucher code: " + (random.nextInt(500)) + "\n");
+                        } else {
+                            System.out.println("thank you and hava a nice day");
                         }
-
-                        Payed_money = 0.0;
                         result = 0.0;
-
                     }
-                        }
-                else {
+                } else {
                     System.out.println("i think you have entered a wrong letter :( please try again");
                 }
 
