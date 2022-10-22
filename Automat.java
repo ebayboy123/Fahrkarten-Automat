@@ -1,6 +1,5 @@
 import java.util.*;
 import java.text.DecimalFormat;
-import java.lang.Math;
 
 public class Automat {
 
@@ -9,12 +8,12 @@ public class Automat {
     public static void main(String[] args) throws InterruptedException {
 
         int num_of_tickets;
-        Scanner input = new Scanner(System.in);
         String choosen_ticket;
         String traincard;
         Integer age;
         Double inserted_coins;
         Double result = null;
+        Scanner input = new Scanner(System.in);
 
         //choosing options for tickets
         List<String> avalible_buying_options = new ArrayList<String>();
@@ -43,7 +42,7 @@ public class Automat {
                 // tickets
                 System.out.println("welcome to the ticket machine \nwe have 3 different options\nZone A: 2,50 €\nZone B: 3,70 €\nZone C: 5,20 €\n");
                 System.out.println("which ticket would you like to buy? a | b | c");
-                choosen_ticket = input.nextLine().toLowerCase();
+                choosen_ticket = input.next().toLowerCase();
 
                 if (avalible_buying_options.contains(choosen_ticket)) {
 
@@ -134,7 +133,7 @@ public class Automat {
 
                         Random random = new Random();
                         if ((Payed_money-result) != 0.0) {
-                            System.out.println("you have payed too much, \nthere for you will get a voucher for your next purchase! \nVoucher details\nVoucher Value: " + (df.format(Payed_money - result)) + "€ \nVoucher code: " + (random.nextInt(500)));
+                            System.out.println("you have payed too much, \nthere for you will get a voucher for your next purchase! \nVoucher details:\n    Voucher Value: " + (df.format(Payed_money - result)) + "€ \n    Voucher code: " + (random.nextInt(500)) + "\n");
                         }
 
                         Payed_money = 0.0;
@@ -142,11 +141,8 @@ public class Automat {
 
                     }
                         }
-
-
-
                 else {
-                    System.out.println("i think you have entered a wrong number :( please try again");
+                    System.out.println("i think you have entered a wrong letter :( please try again");
                 }
 
             } catch (Exception e) {
